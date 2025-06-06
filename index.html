@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>产品展示</title>
+  <!-- Google Analytics 代码 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X9YS76TJRJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X9YS76TJRJ');
+  </script>
   <style>
     body {
       margin: 0;
@@ -46,6 +54,12 @@
       width: 100%;
       border-radius: 12px;
     }
+    .contact {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+    }
     .btn {
       display: block;
       width: 100%;
@@ -57,41 +71,28 @@
       border-radius: 8px;
       font-size: 16px;
       text-decoration: none;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .btn:hover {
       background-color: #d81b60;
     }
-    .contact-form input, .contact-form textarea {
+    .form-group {
+      margin-bottom: 12px;
+    }
+    input, textarea {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
       font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
-    .contact-form button {
-      margin-top: 14px;
-      background-color: #e91e63;
-      color: white;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      border-radius: 8px;
+    .form-title {
+      font-weight: bold;
       font-size: 16px;
+      margin: 20px 0 10px;
     }
   </style>
-
-  <!-- ✅ Google Analytics 追踪代码 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
 </head>
-
 <body>
   <div class="container">
     <div class="images">
@@ -99,20 +100,25 @@
       <img src="https://i.ibb.co/m5Ptm4x3/d1660186547258561053.jpg" alt="产品图2" />
       <img src="https://i.ibb.co/zV2h9SFH/d1660186547276243500.jpg" alt="产品图3" />
     </div>
-
     <div class="product-title">自慰棒</div>
     <div class="price">¥199</div>
     <div class="description">和真的没什么区别，静音设计，柔软触感，适合新手使用。</div>
-
+    <div class="contact">联系方式：yt748c@gmail.com</div>
     <a href="mailto:yt748c@gmail.com?subject=我要下单&body=您好，我想购买您的产品，请联系我。" class="btn">立即下单</a>
-    <a href="https://weixin.qq.com/r/你的微信链接" class="btn" target="_blank">微信客服</a>
+    <a href="weixin://dl/addfriend?wechatid=18289321552" class="btn">微信客服</a>
 
-    <!-- ✅ 表单：手机号 / 微信 / 留言 -->
-    <form action="https://formspree.io/f/请替换成你的ID" method="POST" class="contact-form">
-      <input type="text" name="phone" placeholder="手机号" required>
-      <input type="text" name="wechat" placeholder="微信号" required>
-      <textarea name="message" rows="4" placeholder="留言内容" required></textarea>
-      <button type="submit">提交信息</button>
+    <div class="form-title">提交您的信息</div>
+    <form action="https://formspree.io/f/manjqyeo" method="POST">
+      <div class="form-group">
+        <input type="text" name="手机号" placeholder="请输入手机号" required />
+      </div>
+      <div class="form-group">
+        <input type="text" name="微信号" placeholder="请输入微信号" required />
+      </div>
+      <div class="form-group">
+        <textarea name="留言" placeholder="请输入留言..." rows="4"></textarea>
+      </div>
+      <button type="submit" class="btn">提交信息</button>
     </form>
   </div>
 </body>
