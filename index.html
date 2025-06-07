@@ -13,7 +13,6 @@
     gtag('config', 'G-X9YS76TJRJ');
   </script>
   <style>
-    /* 原有样式 */
     body {
       margin: 0;
       font-family: "Helvetica Neue", sans-serif;
@@ -124,6 +123,34 @@
     .top { transform: rotateX(90deg) translateZ(100px); }
     .bottom { transform: rotateX(-90deg) translateZ(100px); }
 
+    /* 小型魔方样式 */
+    .small-cube-container {
+      width: 100px;
+      height: 100px;
+      perspective: 500px;
+      margin: 30px auto;
+    }
+    .small-cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotate 15s infinite linear;
+    }
+    .small-cube-face {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+    }
+    .small-cube .front { transform: translateZ(50px); }
+    .small-cube .back { transform: rotateY(180deg) translateZ(50px); }
+    .small-cube .right { transform: rotateY(90deg) translateZ(50px); }
+    .small-cube .left { transform: rotateY(-90deg) translateZ(50px); }
+    .small-cube .top { transform: rotateX(90deg) translateZ(50px); }
+    .small-cube .bottom { transform: rotateX(-90deg) translateZ(50px); }
+
     @keyframes rotate {
       from { transform: rotateY(0) rotateX(0); }
       to { transform: rotateY(360deg) rotateX(360deg); }
@@ -151,7 +178,7 @@
   </style>
 </head>
 <body>
-  <!-- 3D魔方 -->
+  <!-- 大型3D魔方 -->
   <div class="cube-container">
     <div class="cube">
       <div class="cube-face front" style="background-image: url('https://i.ibb.co/b54YN72W/images-1.jpg')"></div>
@@ -163,17 +190,39 @@
     </div>
   </div>
 
+  <!-- 小型3D魔方 -->
+  <div class="small-cube-container">
+    <div class="small-cube">
+      <div class="cube-face front" style="background-image: url('https://i.ibb.co/V0Y0G7Br/118beea7640242ac110002.jpg')"></div>
+      <div class="cube-face back" style="background-image: url('https://i.ibb.co/cSpHFXLt/1121eabe130242ac110005.jpg')"></div>
+      <div class="cube-face right" style="background-image: url('https://i.ibb.co/LzDq65c0/O1-CN01-TREv9k22-EMFr-SNt-LX-928517088-jpg-Q75-jpg.jpg')"></div>
+      <div class="cube-face left" style="background-image: url('https://i.ibb.co/sdTX8WrM/2.jpg')"></div>
+      <div class="cube-face top" style="background-image: url('https://i.ibb.co/V0Y0G7Br/118beea7640242ac110002.jpg')"></div>
+      <div class="cube-face bottom" style="background-image: url('https://i.ibb.co/cSpHFXLt/1121eabe130242ac110005.jpg')"></div>
+    </div>
+  </div>
+
   <!-- 照片墙 -->
   <div class="photo-wall">
+    <img src="https://i.ibb.co/b54YN72W/images-1.jpg" alt="photo-1">
+    <img src="https://i.ibb.co/ds3nsg23/images-2.jpg" alt="photo-2">
+    <img src="https://i.ibb.co/ymrsXVzc/images-3.jpg" alt="photo-3">
+    <img src="https://i.ibb.co/S4R2ZsFm/images-4.jpg" alt="photo-4">
+    <img src="https://i.ibb.co/Df9zsttN/images-5.jpg" alt="photo-5">
+    <img src="https://i.ibb.co/0pjh12RZ/images-6.jpg" alt="photo-6">
     <img src="https://i.ibb.co/hJHRVgZm/images-7.jpg" alt="photo-7">
     <img src="https://i.ibb.co/jZjFPtrJ/images-8.jpg" alt="photo-8">
     <img src="https://i.ibb.co/9HmLXf6B/images.jpg" alt="photo-9">
     <img src="https://i.ibb.co/MDNmWG56/1.jpg" alt="photo-10">
     <img src="https://i.ibb.co/sdTX8WrM/2.jpg" alt="photo-11">
     <img src="https://i.ibb.co/NnYV1fgV/image.jpg" alt="photo-12">
+    <img src="https://i.ibb.co/V0Y0G7Br/118beea7640242ac110002.jpg" alt="photo-13">
+    <img src="https://i.ibb.co/cSpHFXLt/1121eabe130242ac110005.jpg" alt="photo-14">
+    <img src="https://i.ibb.co/LzDq65c0/O1-CN01-TREv9k22-EMFr-SNt-LX-928517088-jpg-Q75-jpg.jpg" alt="photo-15">
+    <img src="https://i.ibb.co/sdTX8WrM/2.jpg" alt="photo-16">
   </div>
 
-  <!-- 原有的产品展示内容 -->
+  <!-- 产品展示内容 -->
   <div class="container">
     <div class="images">
       <img src="https://i.ibb.co/bMYL8B2X/d1660186547154631770.jpg" alt="产品图1" />
