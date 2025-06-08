@@ -12,6 +12,24 @@
     gtag('js', new Date());
     gtag('config', 'G-X9YS76TJRJ');
   </script>
+  
+  <!-- MIXDESK客服系统 -->
+  <script type='text/javascript'>
+    (function(a, b, c, d, e, j, s) {
+        a._t = d;
+        a[d] = a[d] || function() {
+            (a[d].a = a[d].a || []).push(arguments)
+        };
+        j = b.createElement(c),
+            s = b.getElementsByTagName(c)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = 'https://chat.mix-chat.com/entry.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MIXDESK');
+    _MIXDESK('entId', 'a581dddc8479fc6064074dc1db35a134');
+  </script>
+  
   <style>
     body {
       margin: 0;
@@ -176,7 +194,7 @@
       transform: scale(1.1);
     }
 
-    /* 在线客服弹框样式 */
+    /* 在线客服按钮样式 */
     .customer-service {
       position: fixed;
       bottom: 20px;
@@ -200,38 +218,6 @@
       content: "💬";
       font-size: 24px;
       color: white;
-    }
-    .service-popup {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 250px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      padding: 20px;
-      display: none;
-      z-index: 1001;
-    }
-    .service-popup h3 {
-      margin: 0 0 15px 0;
-      color: #e91e63;
-      font-size: 16px;
-    }
-    .service-popup p {
-      margin: 0 0 10px 0;
-      font-size: 14px;
-      color: #666;
-    }
-    .service-popup .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      background: none;
-      border: none;
-      font-size: 18px;
-      cursor: pointer;
-      color: #999;
     }
   </style>
 </head>
@@ -303,15 +289,8 @@
     <div class="contact">联系方式：yt748c@gmail.com</div>
   </div>
 
-  <!-- 在线客服弹框 -->
-  <div class="customer-service" onclick="toggleServicePopup()"></div>
-  <div class="service-popup" id="servicePopup">
-    <button class="close-btn" onclick="toggleServicePopup()">×</button>
-    <h3>在线客服</h3>
-    <p>📧 邮箱：yt748c@gmail.com</p>
-    <p>💬 如有任何问题，请随时联系我们！</p>
-    <p>⏰ 服务时间：24小时在线</p>
-  </div>
+  <!-- 在线客服按钮 -->
+  <div class="customer-service" onclick="openMixdeskChat()"></div>
 
   <!-- 照片自动切换脚本 -->
   <script>
@@ -371,21 +350,20 @@
       });
     }
 
-    // 在线客服弹框控制
-    function toggleServicePopup() {
-      const popup = document.getElementById('servicePopup');
-      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-    }
-
-    // 点击页面其他地方关闭弹框
-    document.addEventListener('click', function(event) {
-      const popup = document.getElementById('servicePopup');
-      const serviceBtn = document.querySelector('.customer-service');
-      
-      if (!popup.contains(event.target) && !serviceBtn.contains(event.target)) {
-        popup.style.display = 'none';
+    // 打开MIXDESK客服聊天
+    function openMixdeskChat() {
+      if (typeof _MIXDESK !== 'undefined') {
+        _MIXDESK('showWidget');
+      } else {
+        console.log('MIXDESK客服系统正在加载中...');
+        // 如果客服系统还没加载完成，可以稍后再试
+        setTimeout(() => {
+          if (typeof _MIXDESK !== 'undefined') {
+            _MIXDESK('showWidget');
+          }
+        }, 1000);
       }
-    });
+    }
   </script>
 </body>
 </html>
