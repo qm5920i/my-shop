@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>产品展示</title>
+  <!-- Google Analytics 跟踪代码 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X9YS76TJRJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X9YS76TJRJ');
+  </script>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", sans-serif;
+      background-color: #fff0f5;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    .product-title {
+      font-size: 24px;
+      color: #e91e63;
+      margin: 10px 0;
+      text-align: center;
+    }
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #444;
+      text-align: center;
+    }
+    .description {
+      font-size: 16px;
+      margin: 10px 0;
+      text-align: center;
+    }
+    .images {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .images img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .contact {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background-color: #e91e63;
+      color: white;
+      padding: 14px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      background-color: #d81b60;
+    }
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    #success-message {
+      display: none;
+      color: green;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* 3D魔方样式 */
+    .cube-container {
+      width: 200px;
+      height: 200px;
+      perspective: 1000px;
+      margin: 50px auto;
+    }
+    .cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotate 20s infinite linear;
+    }
+    .cube-face {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+    }
+    .front { transform: translateZ(100px); }
+    .back { transform: rotateY(180deg) translateZ(100px); }
+    .right { transform: rotateY(90deg) translateZ(100px); }
+    .left { transform: rotateY(-90deg) translateZ(100px); }
+    .top { transform: rotateX(90deg) translateZ(100px); }
+    .bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+    /* 小型魔方样式 */
+    .small-cube-container {
+      width: 100px;
+      height: 100px;
+      perspective: 500px;
+      margin: 30px auto;
+    }
+    .small-cube {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotate 15s infinite linear;
+    }
+    .small-cube-face {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background-size: cover;
+      background-position: center;
+    }
+    .small-cube .front { transform: translateZ(50px); }
+    .small-cube .back { transform: rotateY(180deg) translateZ(50px); }
+    .small-cube .right { transform: rotateY(90deg) translateZ(50px); }
+    .small-cube .left { transform: rotateY(-90deg) translateZ(50px); }
+    .small-cube .top { transform: rotateX(90deg) translateZ(50px); }
+    .small-cube .bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+    @keyframes rotate {
+      from { transform: rotateY(0) rotateX(0); }
+      to { transform: rotateY(360deg) rotateX(360deg); }
+    }
+
+    /* 照片墙样式 */
+    .photo-wall {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    .photo-wall img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+    .photo-wall img:hover {
+      transform: scale(1.1);
+    }
+
+    /* 在线客服弹框样式 */
+    .customer-service {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #e91e63;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(233, 30, 99, 0.3);
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+    .customer-service:hover {
+      transform: scale(1.1);
+    }
+    .customer-service::before {
+      content: "💬";
+      font-size: 24px;
+      color: white;
+    }
+    .service-popup {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 250px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      padding: 20px;
+      display: none;
+      z-index: 1001;
+    }
+    .service-popup h3 {
+      margin: 0 0 15px 0;
+      color: #e91e63;
+      font-size: 16px;
+    }
+    .service-popup p {
+      margin: 0 0 10px 0;
+      font-size: 14px;
+      color: #666;
+    }
+    .service-popup .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 18px;
+      cursor: pointer;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <!-- 大型3D魔方 -->
+  <div class="cube-container">
+    <div class="cube">
+      <div class="cube-face front" style="background-image: url('https://i.ibb.co/b54YN72W/images-1.jpg')"></div>
+      <div class="cube-face back" style="background-image: url('https://i.ibb.co/ds3nsg23/images-2.jpg')"></div>
+      <div class="cube-face right" style="background-image: url('https://i.ibb.co/ymrsXVzc/images-3.jpg')"></div>
+      <div class="cube-face left" style="background-image: url('https://i.ibb.co/S4R2ZsFm/images-4.jpg')"></div>
+      <div class="cube-face top" style="background-image: url('https://i.ibb.co/Df9zsttN/images-5.jpg')"></div>
+      <div class="cube-face bottom" style="background-image: url('https://i.ibb.co/0pjh12RZ/images-6.jpg')"></div>
+    </div>
+  </div>
+
+  <!-- 小型3D魔方 -->
+  <div class="small-cube-container">
+    <div class="small-cube">
+      <div class="cube-face front" style="background-image: url('https://i.ibb.co/V0Y0G7Br/118beea7640242ac110002.jpg')"></div>
+      <div class="cube-face back" style="background-image: url('https://i.ibb.co/cSpHFXLt/1121eabe130242ac110005.jpg')"></div>
+      <div class="cube-face right" style="background-image: url('https://i.ibb.co/LzDq65c0/O1-CN01-TREv9k22-EMFr-SNt-LX-928517088-jpg-Q75-jpg.jpg')"></div>
+      <div class="cube-face left" style="background-image: url('https://i.ibb.co/sdTX8WrM/2.jpg')"></div>
+      <div class="cube-face top" style="background-image: url('https://i.ibb.co/V0Y0G7Br/118beea7640242ac110002.jpg')"></div>
+      <div class="cube-face bottom" style="background-image: url('https://i.ibb.co/cSpHFXLt/1121eabe130242ac110005.jpg')"></div>
+    </div>
+  </div>
+
+  <!-- 照片墙 -->
+  <div class="photo-wall">
+    <img src="https://i.ibb.co/b54YN72W/images-1.jpg" alt="photo-1">
+    <img src="https://i.ibb.co/ds3nsg23/images-2.jpg" alt="photo-2">
+    <img src="https://i.ibb.co/ymrsXVzc/images-3.jpg" alt="photo-3">
+    <img src="https://i.ibb.co/S4R2ZsFm/images-4.jpg" alt="photo-4">
+    <img src="https://i.ibb.co/Df9zsttN/images-5.jpg" alt="photo-5">
+    <img src="https://i.ibb.co/0pjh12RZ/images-6.jpg" alt="photo-6">
+    <img src="https://i.ibb.co/hJHRVgZm/images-7.jpg" alt="photo-7">
+    <img src="https://i.ibb.co/jZjFPtrJ/images-8.jpg" alt="photo-8">
+    <img src="https://i.ibb.co/9HmLXf6B/images.jpg" alt="photo-9">
+    <img src="https://i.ibb.co/MDNmWG56/1.jpg" alt="photo-10">
+    <img src="https://i.ibb.co/sdTX8WrM/2.jpg" alt="photo-11">
+    <img src="https://i.ibb.co/NnYV1fgV/image.jpg" alt="photo-12">
+    <img src="https://i.ibb.co/V0Y0G7Br/118beea7640242ac110002.jpg" alt="photo-13">
+    <img src="https://i.ibb.co/cSpHFXLt/1121eabe130242ac110005.jpg" alt="photo-14">
+    <img src="https://i.ibb.co/LzDq65c0/O1-CN01-TREv9k22-EMFr-SNt-LX-928517088-jpg-Q75-jpg.jpg" alt="photo-15">
+    <img src="https://i.ibb.co/sdTX8WrM/2.jpg" alt="photo-16">
+  </div>
+
+  <!-- 产品展示内容 -->
+  <div class="container">
+    <div class="images">
+      <img src="https://i.ibb.co/bMYL8B2X/d1660186547154631770.jpg" alt="产品图1" />
+    </div>
+    <div class="product-title">自慰棒</div>
+
+    <!-- 下单按钮 -->
+    <a href="mailto:yt748c@gmail.com?subject=我要下单&body=您好，我想购买您的产品，请联系我。" class="btn">立即下单</a>
+
+    <!-- 表单 -->
+    <form action="https://formspree.io/f/manjqyeo" method="POST" onsubmit="handleSubmit(event)">
+      <input type="text" name="phone" placeholder="请输入手机号" required />
+      <input type="text" name="wechat" placeholder="请输入微信号" required />
+      <textarea name="message" placeholder="留言内容" required></textarea>
+      <button type="submit" class="btn">提交信息</button>
+    </form>
+
+    <div id="success-message">✅ 提交成功！我们会尽快联系您。</div>
+
+    <div class="contact">联系方式：yt748c@gmail.com</div>
+  </div>
+
+  <!-- 在线客服弹框 -->
+  <div class="customer-service" onclick="toggleServicePopup()"></div>
+  <div class="service-popup" id="servicePopup">
+    <button class="close-btn" onclick="toggleServicePopup()">×</button>
+    <h3>在线客服</h3>
+    <p>📧 邮箱：yt748c@gmail.com</p>
+    <p>💬 如有任何问题，请随时联系我们！</p>
+    <p>⏰ 服务时间：24小时在线</p>
+  </div>
+
+  <!-- 照片自动切换脚本 -->
+  <script>
+    function rotatePhotos() {
+      const cube = document.querySelector('.cube');
+      const photoWall = document.querySelector('.photo-wall');
+      const cubeFaces = document.querySelectorAll('.cube-face');
+      const wallPhotos = document.querySelectorAll('.photo-wall img');
+      
+      setInterval(() => {
+        // 获取第一个魔方面的图片
+        const firstCubeImage = cubeFaces[0].style.backgroundImage;
+        
+        // 魔方图片向前移动
+        for(let i = 0; i < cubeFaces.length-1; i++) {
+          cubeFaces[i].style.backgroundImage = cubeFaces[i+1].style.backgroundImage;
+        }
+        
+        // 获取第一个照片墙图片的src
+        const firstWallImage = wallPhotos[0].src;
+        
+        // 照片墙图片向前移动
+        for(let i = 0; i < wallPhotos.length-1; i++) {
+          wallPhotos[i].src = wallPhotos[i+1].src;
+        }
+        
+        // 将魔方的第一张图片移到照片墙最后
+        wallPhotos[wallPhotos.length-1].src = firstCubeImage.slice(5, -2);
+        // 将照片墙的第一张图片移到魔方最后
+        cubeFaces[cubeFaces.length-1].style.backgroundImage = `url('${firstWallImage}')`;
+      }, 2000); // 每2秒切换一次
+    }
+
+    // 页面加载完成后启动自动切换
+    window.addEventListener('load', rotatePhotos);
+  </script>
+
+  <!-- 表单处理脚本 -->
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById("success-message").style.display = "block";
+          form.reset();
+        } else {
+          alert("提交失败，请稍后再试。");
+        }
+      }).catch(error => {
+        alert("提交过程中出错，请检查网络。");
+      });
+    }
+
+    // 在线客服弹框控制
+    function toggleServicePopup() {
+      const popup = document.getElementById('servicePopup');
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // 点击页面其他地方关闭弹框
+    document.addEventListener('click', function(event) {
+      const popup = document.getElementById('servicePopup');
+      const serviceBtn = document.querySelector('.customer-service');
+      
+      if (!popup.contains(event.target) && !serviceBtn.contains(event.target)) {
+        popup.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
